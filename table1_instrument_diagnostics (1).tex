@@ -1,0 +1,39 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Table 1: Instrument Diagnostics -- First Stage Results}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{IV10 Only}&\multicolumn{1}{c}{FM Age Only}&\multicolumn{1}{c}{Both IVs}\\
+\hline
+iv10\_relative\_cabinet&      0.0166\sym{***}&                     &      0.0151\sym{***}\\
+            &   (0.00424)         &                     &   (0.00460)         \\
+[1em]
+gdp\_growth  &   -0.000160         &   -0.000758         &   -0.000663         \\
+            &  (0.000662)         &   (0.00125)         &   (0.00124)         \\
+[1em]
+inflation   &  -0.0000361         &   -0.000104         &   -0.000186         \\
+            &  (0.000163)         &  (0.000135)         &  (0.000149)         \\
+[1em]
+gross\_debt\_gdp&   0.0000476         &  -0.0000602         &   0.0000210         \\
+            &  (0.000263)         &  (0.000252)         &  (0.000236)         \\
+[1em]
+democracy   &      0.0534\sym{**} &      0.0308         &      0.0188         \\
+            &    (0.0268)         &    (0.0235)         &    (0.0241)         \\
+[1em]
+hog\_ideology\_num\_redux&      0.0103         &      0.0107         &     0.00975         \\
+            &   (0.00702)         &   (0.00875)         &   (0.00899)         \\
+[1em]
+fm\_age      &                     &    -0.00444\sym{***}&    -0.00426\sym{***}\\
+            &                     &   (0.00111)         &   (0.00110)         \\
+\hline
+\(N\)       &        3965         &        2987         &        2987         \\
+Adj. R-squared&      0.0386         &      0.0365         &      0.0533         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Dependent variable: Women Finance Minister (=1).  Region and year FE absorbed. Clustered SEs at country level.  F-stats: IV10 F=15.22 (p=0.0001); FM Age F=16.05 (p=0.0001).}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

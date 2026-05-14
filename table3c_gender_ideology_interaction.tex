@@ -1,0 +1,38 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Table 3c: Gender x Ideology Interaction — Fiscal Outcomes}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}&\multicolumn{1}{c}{Structural Balance}\\
+\hline
+female\_fm   &       0.548         &       0.489         &      -1.208         \\
+            &     (1.999)         &     (1.993)         &     (2.168)         \\
+[1em]
+fm\_ideology1&      0.0215         &      0.0289         &       0.122         \\
+            &     (0.104)         &     (0.106)         &     (0.120)         \\
+[1em]
+c.female\_fm\#c.fm\_ideology1&    -0.00787         &      0.0180         &       0.475         \\
+            &     (0.567)         &     (0.565)         &     (0.665)         \\
+[1em]
+gdp\_growth  &      0.0851\sym{**} &      0.0732\sym{**} &       0.126\sym{***}\\
+            &    (0.0370)         &    (0.0361)         &    (0.0356)         \\
+[1em]
+inflation   &      0.0200         &      0.0165         &      0.0239         \\
+            &    (0.0179)         &    (0.0175)         &    (0.0340)         \\
+[1em]
+gross\_debt\_gdp&     -0.0740         &     -0.0672         &     -0.0116         \\
+            &    (0.0600)         &    (0.0603)         &    (0.0115)         \\
+[1em]
+democracy   &      -1.121         &      -0.784         &      -0.502         \\
+            &     (1.164)         &     (1.143)         &     (0.631)         \\
+[1em]
+hog\_ideology\_num\_redux&      -0.166         &      -0.118         &      -0.318         \\
+            &     (0.265)         &     (0.275)         &     (0.347)         \\
+\hline
+\(N\)       &        3938         &        3839         &        1875         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Country and year FE. Clustered SEs at country level.  Interaction: does ideology-fiscal effect differ for women FMs?}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{table}

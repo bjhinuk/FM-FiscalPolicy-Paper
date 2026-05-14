@@ -1,0 +1,37 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Table 5: Overidentified IV -- Hansen J Overidentification Test}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}&\multicolumn{1}{c}{Structural Balance}\\
+\hline
+female\_fm   &       6.420\sym{*}  &       3.035         &      -0.134         \\
+            &     (3.468)         &     (2.857)         &     (3.052)         \\
+[1em]
+gdp\_growth  &       0.188\sym{***}&       0.171\sym{***}&      0.0846\sym{*}  \\
+            &    (0.0365)         &    (0.0387)         &    (0.0476)         \\
+[1em]
+inflation   &   0.0000914         &    -0.00128         &     -0.0195         \\
+            &   (0.00760)         &   (0.00806)         &    (0.0213)         \\
+[1em]
+gross\_debt\_gdp&     -0.0296\sym{***}&    -0.00760         &     -0.0306\sym{***}\\
+            &   (0.00744)         &   (0.00507)         &   (0.00876)         \\
+[1em]
+democracy   &      -1.373\sym{***}&      -0.401         &      -1.344\sym{*}  \\
+            &     (0.515)         &     (0.386)         &     (0.709)         \\
+[1em]
+hog\_ideology\_num\_redux&     -0.0302         &      -0.127         &      0.0924         \\
+            &     (0.233)         &     (0.199)         &     (0.170)         \\
+\hline
+\(N\)       &        2968         &        2893         &        1645         \\
+Kleibergen-Paap F-stat&       13.65         &       13.53         &       7.911         \\
+Hansen J p-value&       0.912         &       0.936         &       0.105         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize IVs: IV10 and FM Age. Region and year FE. Clustered SEs at country level.  Hansen J p > 0.10 = instruments jointly valid.}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

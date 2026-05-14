@@ -1,0 +1,35 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Table 3a: FM Ideology and Fiscal Outcomes}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}&\multicolumn{1}{c}{Structural Balance}\\
+\hline
+fm\_ideology1&      0.0201         &      0.0297         &       0.152         \\
+            &     (0.124)         &     (0.126)         &     (0.135)         \\
+[1em]
+gdp\_growth  &      0.0852\sym{**} &      0.0734\sym{**} &       0.126\sym{***}\\
+            &    (0.0370)         &    (0.0361)         &    (0.0349)         \\
+[1em]
+inflation   &      0.0199         &      0.0165         &      0.0252         \\
+            &    (0.0179)         &    (0.0175)         &    (0.0353)         \\
+[1em]
+gross\_debt\_gdp&     -0.0739         &     -0.0670         &     -0.0111         \\
+            &    (0.0600)         &    (0.0603)         &    (0.0110)         \\
+[1em]
+democracy   &      -1.105         &      -0.767         &      -0.547         \\
+            &     (1.157)         &     (1.136)         &     (0.608)         \\
+[1em]
+hog\_ideology\_num\_redux&      -0.162         &      -0.114         &      -0.322         \\
+            &     (0.261)         &     (0.272)         &     (0.354)         \\
+\hline
+\(N\)       &        3938         &        3839         &        1875         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Country and year FE. Clustered SEs at country level.  fm\_ideology1: 1=far left, 6=far right. Higher = more right-wing.}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

@@ -1,0 +1,30 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{First Stage: Instrument Strength Comparison}
+\label{tab:ivcompare}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{5}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+            &\multicolumn{1}{c}{IV1: LOO Count}&\multicolumn{1}{c}{IV2: Regional}&\multicolumn{1}{c}{IV3: Ideo$\times$Prop}&\multicolumn{1}{c}{IV4: Core LOO}&\multicolumn{1}{c}{IV5: Ideo Dist}\\
+\hline
+iv1\_loo\_count & 0.00257 & & & & \\
+            & (0.00486) & & & & \\[0.5em]
+iv2\_regional\_lag & & $-$0.0371 & & & \\
+            & & (0.142) & & & \\[0.5em]
+iv3\_ideology\_propensity & & & $-$0.0575 & & \\
+            & & & (0.781) & & \\[0.5em]
+iv4\_core\_loo & & & & 0.00232 & \\
+            & & & & (0.00487) & \\[0.5em]
+iv5\_ideology\_distance & & & & & $-$0.00166 \\
+            & & & & & (0.00751) \\
+\hline
+\(N\)       & 3,965 & 3,920 & 3,965 & 3,965 & 3,965 \\
+R-squared   & 0.0137 & 0.0128 & 0.0134 & 0.0137 & 0.0135 \\
+\hline\hline
+\multicolumn{6}{l}{\footnotesize Country and year FE. Clustered SEs at country level. Rule of thumb: $F > 10$.}\\
+\multicolumn{6}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

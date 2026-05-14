@@ -1,0 +1,20 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Robustness Block 4: Placebo Test}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}\\
+\hline
+placebo\_fm  &       0.151         &       0.162         \\
+            &     (0.366)         &     (0.370)         \\
+\hline
+\(N\)       &        3938         &        3839         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Placebo: randomly reassigned treatment within country (seed 1234).  Near-zero coefficients confirm no spurious correlation.  Country and year FE. Clustered SEs at country level.}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

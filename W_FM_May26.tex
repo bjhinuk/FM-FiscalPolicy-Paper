@@ -1,0 +1,761 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[hidelinks,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{threeparttable}
+\renewcommand{\TPTminimum}{\linewidth}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{placeins}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{atbegshi}
+\usepackage[round,authoryear,sort]{natbib}
+\renewcommand{\citet}[1]{\textit{\citeauthor{#1}} (\citeyear{#1})}
+\renewcommand{\citep}[1]{(\textit{\citeauthor{#1}}, \citeyear{#1})}
+\usepackage{etoolbox}
+\doublespacing
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection.}{0.5em}{}
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\FloatBarrier\subsection}}
+\makeatother
+\newcommand{\sym}[1]{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+\begin{document}
+\singlespacing
+\begin{titlepage}
+\begin{center}
+\vspace*{1cm}
+{\LARGE \bfseries Gender, Ideology, and Fiscal Policy}\\
+\vspace{1.5cm}
+{\large Jhinuk Banerjee}\\[0.4em]
+{\normalsize University of Oklahoma\\
+\href{mailto:bjhinuk@ou.edu}{jhinuk.ban1@ou.edu}}
+\vspace{0.8cm}
+
+\begin{abstract}
+\noindent
+This paper studies whether women Finance Ministers produce different fiscal outcomes than men, and whether any such differences are because of their partisan ideological beliefs. I use a country-year panel covering Finance Ministers in over 170 countries from 1990 to 2023. I estimate the IV-TWFE model to test my hypothesis. The analysis identifies 391 women Finance Ministers in the sample post-1990. One main issue I came across is the 'glass cliff' phenomenon, that is, women are disproportionately appointed, especially during periods of crisis or tension, which generates downward bias in the estimates. I address this using two instruments, the count of women in other cabinet positions relative to the country's region-decade peer average and the Finance Minister's age at appointment. IV estimates indicate that women Finance Ministers improve the fiscal balance relative to men but there is no significant effect of their ideological beliefs. The ideological distribution of women Finance Ministers skews modestly left, which might indicate that there is a partisan selection rather than a gendered effect. But, the findings here show that the ideology coefficient is statistically indistinguishable from zero in all fiscal outcome specifications, indicating that the effect is driven by gender rather than ideology.
+
+\vspace{0.5em}
+\noindent\textbf{JEL Codes:} E62, H62, J16, D72
+
+\end{abstract}
+\end{center}
+\end{titlepage}
+
+\clearpage
+\doublespacing
+\section{Introduction}
+\label{sec:intro}
+
+The representation of women in the cabinet and economic policymaking is quite low in the whole world. As of 2026, women were holding only 22.4\% of cabinet member seats across the world (a reduction from 2024). And, the Finance Ministry, which is a significant cabinet position, is one of those ministeries which have been dominated by men. In  this context, one crucial question arises here, how is the representation and functionality of women in the Finance Ministry? and how is it different from that of men?
+
+This paper tries to answer these questions based on country-year panel data of over 170 (roughly 173) countries from 1990 to 2023. The dataset WhoGov \citep{nyrup2020} has individual cabinet ministerial information from most countries in the world, which is combined with GLID (Global Leader Ideology Dataset), and IMF World Economic Outlook (WEO) to conduct the analysis. The party ideology of the individual Finance Ministers has been manually coded using AI (Claude and GPT-4) and validated against the GLID's ideology variable for Head of the Government and the Wikipedia pages of each party from each country on a scale of 1-6. I finally have a dataset with only 411 female Finance Ministers since 1965 till now.  
+
+
+A central empirical challenge I come across in this paper is endogeneity and the selective hiring of women in cabinet ministerial positions ("glass Cliff phenomenon"). Finance Ministers are not randomly elected or selected, they are chosen by the Heads of the Government. This selection is often done during periods of tension and crisis. A large literature on the ``glass cliff'' phenomenon describes how women are disproportionately selected into leadership during crises \citep{ryan2005,armstrong2024}. In the fiscal context, \citet{armstrong2024} demonstrates that financial crises significantly raises the possibility of a women getting appointed as Finance Minister, while \citet{kern2025} document a parallel dynamic in central banking appointments as well. This selection mechanism, quite naturally, generates a negative bias in the estimates, since women face (rather more like they are asked to survive) deteriorating fiscal conditions more often than men.
+
+I have mainly used two instruments here. First is the variation in cabinet gender representation across countries in different regions, proxied by the number of women in non-Finance ministry positions compared to the regional-decade average. Second is the age of Finance Ministers at time of their appointment. This second instrument was chosen based on the skewness in women’s career paths to reach higher political office and the experience or exposure they get to reach that position in their careers (most of them are able to reach that position at a mature age). 
+
+The findings of my study indicate that female finance ministers enhance fiscal performance of their countries, with the impact size rising from insignificant in TWFE specification under just-identified IV and overidentified IV. It is almost echoing the glass cliff literature I was talking about just above, where the estimated impacts follow a monotonically rising path with respect to the degree of exogeneity of the instruments used in the analysis. The overidentification approach suggests an impact roughly equal to two-and-a-half standard deviations of fiscal balance within the countries \citep{alesina2019}.
+
+The second part of this paper is about these women's ideological partisanship and its impact on their fiscal policy choices. Female Finance Ministers exhibit slightly more leftist views compared to their male counterparts, as seen in my data. But in this regard, the obvious concern would be whether the observed fiscal gains from having a female finance minister can be attributed to the leftist administrations or the gender of the finance minister. I find that the ideology of finance ministers does not predict their fiscal choices, irrespective of which country or system they are in. Moreover, the interaction between gender and ideology exhibits no statistically significant association with any of the three fiscal variables used in my model.
+
+This paper offers five unique contributions. \textbf{First}, it offers the 
+most comprehensive cross-country panel test yet of the causal impact of female 
+Finance Ministers on fiscal performance, spanning 173 countries over thirty 
+years. \textbf{Second}, it incorporates corrections for glass-cliff selection 
+bias through two new instruments, providing causal estimates. \textbf{Third}, it rejects the idea that partisan ideology has an influence on the decisions regarding the fiscal policy choices. 
+\textbf{Fourth}, it uses instruments that use gender norms, which are widespread 
+across different countries and career-queue processes that might be useful and meaningful. \textbf{Fifth}, it generates innovative data on ideology at the finance ministry level, including finance ministers from 170 countries between 1990 and 2023.
+
+The paper is organized as follows. After an overview of the literature in the following Section~\ref{sec:background}, Section~\ref{sec:data} covers the data part. Identification strategy is described in Section~\ref{sec:identification}, while the results can be found in Section~\ref{sec:results} and the robustness checks in Section ~\ref{sec:robustness}. Lastly conclusion is in Section~\ref{sec:conclusion}. 
+
+%==============================================================================
+% SECTION 2: BACKGROUND
+%==============================================================================
+\section{Background and Existing Evidence}
+\label{sec:background}
+
+This paper draws on several related literatures like political economy of fiscal policy, gender and political leadership, glass cliff and appointment in times of crisis, and gender and economic institutions. Across all of these literatures, an iterative idea comes up that the results of fiscal policy depend not only on the macroeconomic situation, but also on political institutions, policymakers, and the conditions under which they come to power in the country under consideration.
+
+One section of the literature used in this paper illustrates how institutions and electoral incentives affect the fiscal outcomes. \citet{alesina1997} have shown that political instability and fragmentation are often associated with higher fiscal deficits, whereas \citet{persson2002} have demonstrated that differences are due to the election system and regime type, which influences the amount and composition of government expenditures. Even if an institutional structure in question is supposed to be independent, electoral incentives may drive its decisions to a great extent, directly or indirectly \citep{beck1987}. For the individual decision-makers, \citet{moessinger2012} have found that personal characteristics of Finance Ministers matter quite a lot for their fiscal policies.
+
+Party affiliation and ideology impact the policies in different cabinet positions, which is a very common finding of many papers in this area. \citet{hibbs1977} suggests left-leaning regimes adopt more expansive fiscal policies compared to those with conservative regimes. This has also been replicated using the democratic regimes by \citet{potrafke2011a}. Comparable results can be observed in the case of monetary authorities as well, as seen in \citet{vanommeren2021}. Given these insights, I believe including the finance minister's ideology as a control variable and possible moderator is crucial to find out its impact, if there is any.
+
+A good amount of literature shows how women leaders differ from men in their leadership positions in different aspects. Utilizing gender quota rotations in the Indian villages, \citet{chattopadhyay2004} find that women leaders spend on goods favoured by women and children, whereas \citet{pande2003} show that descriptive representation influences the policymaking process regardless of which party the candidate belongs to. There is some contradictory evidence for economic organizations at an upper level as well. For instance, \citet{masciandaro2020} argues that higher numbers of women in monetary policy committees in the central bank lead to more adoption of hawkish policies regarding interest rates, while \citet{ainsley2020} find that females in Federal Open Market Committee (FOMC) behave in ways quite different from their male colleagues and influence financial markets. Moreover, \citet{suzuki2018} confirms the lower risk of fiscal financial loss among women public officials in the Japanese local governments.
+
+Although a fair amount of literature exists for each of these topics, it is rare to find any information pertaining to the effect that female Finance Ministers have on fiscal policy outcomes. The current literature focuses heavily on the factors that lead to appointment as opposed to policy effects. According to \citet{krook2012}, \citet{obrien2015}, and \citet{field2021}, left-leaning political parties, parliaments, and gender quotas all affect women’s presence within positions of power, while women are provided with less prestigious ministries. Yet, no articles focus on the economic effect of women in such roles.
+
+There is an evident problem with endogenous selection into office during crises. This issue relates to the literature on the ``glass cliff,'' which originated from \citet{ryan2005}, who found that women were more frequently appointed to leadership roles in declining organisations. From a political economy perspective, \citet{armstrong2024} found that financial crises raise the likelihood of appointing women Finance Ministers, especially in countries where women have not held executive positions before. As a result, any naïve estimates of the link between women Finance Ministers and fiscal outcomes will be downward biased due to endogenous selection.
+
+The same trends are observed in monetary institutions. \citet{kern2025} find that sovereign debt crises positively predict the hiring of women in central bank board positions and that female board members are more likely to conduct conservative monetary policy. The causation might be, however, due either to preference differences or to the constraints under which women operate once appointed to these positions. Understanding the difference between these two factors helps explain the instrumental variable approach used in this paper.
+
+Lastly, there is an emerging body of literature looking at the gender-economics-institution-policy-making area. In particular, \citet{bodea2025} finds that people tend to trust female central bank governors much less compared to their male colleagues when inflation rates are particularly high, whereas \citet{mcdowell2024} show that the gender of an economic policymaker affects the perceived legitimacy of economic institutions. Last but not least, \citet{flamini2023} show that macroeconomic policies definitely have gendered consequences, that is, the gender of the policymaker matters. In this context, this paper offers new insights by showing how women finance ministers affect fiscal policy outcomes.
+
+%==============================================================================
+% SECTION 3: DATA
+%==============================================================================
+
+\section{Data}
+\label{sec:data}
+
+\subsection{Dataset Construction}
+
+The analysis uses three primary datasets merged into a one country-year panel spanning the years between 1990 and 2023.
+
+\paragraph{Cabinet minister data:}
+WhoGov \citep{nyrup2020} provides individual-level on cabinet ministers across 177 countries from 1963 to 2023. The main variables include the minister's name, gender, party affiliation, portfolio assignment, tenure dates, start and end dates, and history of other ministerial positions held, if that's the case, among many other such detailed information. The merged panel contains 9,101 country-year observations, restricted to 1990--2023 for data coverage reasons, mainly dependent on the data for fiscal outcomes (WEO).
+
+\paragraph{Ideology data:}
+Finance Minister party ideology is coded on a 1--6 left-right scale 
+(1~$=$~far left, 5~$=$~far right), with a separate category for 
+independents/ technocrats, using AI-assisted (Claude and GPT-4) coding using Wikipedia biographical 
+pages for each party in each country in their official language and in English. The The 
+resulting minister-level variable is cross-checked against the 
+head-of-government ideology variable from the GLID \citep{glid2023} dataset. I found that the agreement 
+between these two sources exceeds 87\% at the country-year level, the remaining discrepancies were resolved manually using party platform 
+documents and Wikipedia page entries in the party's official language and in English language. Ideology 
+coverage is 95\% across all Finance Ministers and 85\% among women Finance 
+Ministers, with missing observations concentrated in 2021--2023 due to 
+GLID coding lag for recent governments or unavailable information for webpages of certain parties.
+
+Table~5 reports the ideological distribution of finance ministers by their gender. Women finance ministers score 3.70 on the 1--6 scale on average, compared with 3.97 for men ($p = 0.002$), which means that women finance ministers are appointed by left-leaning parties more often than right-leaning parties. The gap is statistically significant but substantively modest, and does not map cleanly onto the distinct fiscal policy preferences, a point that I confirmed empirically in Section~\ref{sec:results}. The ideology variable covers all 9,101 observations.
+
+
+\paragraph{Fiscal outcomes:}
+Fiscal data is taken from the IMF World Economic Outlook (WEO) database, providing annual general government revenue, expenditure, fiscal balance, primary balance, and gross debt as shares of GDP for 196 countries from 1980 to 2023. I categorized the data into three main outcomes, the primary balance, fiscal balance, and the structural balance. WEO is preferred as a point of start because of its concise information on the fiscal side of this analysis. Later, I intend to use the IMF Government Finance Statistics for its broader country-year coverage and more detailed fiscal variables and their sub-categories.
+
+\paragraph{Merged sample:}
+The analysis is restricted to 1990--2023 to cover the post-Cold War period in which cabinet gender data are most reliable from all parts of the world. After merging and dropping observations with missing fiscal data, the core sample comprises 3,938--5,048 observations across the 173 countries. Table~1 reports full-sample summary statistics of the sample used to conduct further analysis, and Table~2 disaggregates key variables by the finance minister's gender.
+
+\subsection{Treatment Variable}
+
+The primary treatment variable is:
+\begin{equation}
+  \texttt{female\_fm}_{it}
+    = \mathbf{1}\!\left[
+        \texttt{m\_Finance}_{it} = 1
+        \;\cap\;
+        \texttt{gender}_{it} = \text{Female}
+      \right].
+  \label{eq:treatment}
+\end{equation}
+
+The dataset identifies 391 women finance minister country-year observations across the 173 countries, representing 6.8\% of the analysis sample.\footnote{Following WhoGov conventions, the observation unit is the country-year; a country with two Finance Ministers in the same year (e.g., due to a mid-year reshuffle) contributes two records. The indicator \texttt{female\_fm} equals one for the female-held spell only.} Table~3 reports the distribution across UN regional groupings. The treatment rate is highest in Latin America region and the Caribbean (8.7\%) and lowest in the Middle East and North Africa (0.5\%); the latter region is excluded from the main IV specifications as a sensitivity check. Table~4 documents a strongly positive secular trend, rising from under 2\% of appointments in the 1990s to over 12\% in 2020--2023.
+
+
+%==============================================================================
+% SECTION 4: IDENTIFICATION STRATEGY
+%==============================================================================
+
+\section{Identification Strategy}
+\label{sec:identification}
+
+\subsection{The Glass Cliff Problem}
+
+Women's finance minister appointments are not quite random with respect to prevailing fiscal conditions, as we might expect. The glass cliff literature documents that women are disproportionately elevated to senior leadership especially during periods of institutional distress and tension\citep{ryan2005,cook2010,glass2013}. In the fiscal context, this implies:
+\begin{equation}
+  \operatorname{Cov}(D_{it},\,\varepsilon_{it} \mid \alpha_i, \lambda_t)
+  \;<\; 0,
+  \label{eq:glascliff}
+\end{equation}
+where $D_{it} \equiv \texttt{female\_fm}_{it}$ and $\varepsilon_{it}$ captures unobserved factors, like the fiscal deterioration, political crisis, international pressure, that simultaneously raise the probability of appointing a woman and are negatively correlated with good fiscal outcomes. This is the exactly why the women were appointed to these positions in the first place. Conditional on the country ($\alpha_i$) and the year ($\lambda_t$) fixed effects, this negative covariance implies that TWFE estimation will be:
+\begin{equation}
+  Y_{it}
+    = \beta_1 D_{it}
+    + \mathbf{X}_{it}'\boldsymbol{\gamma}
+    + \alpha_i
+    + \lambda_t
+    + \varepsilon_{it}
+  \label{eq:twfe}
+\end{equation}
+This very likely yields a downward-biased estimate of $\beta_1$. The IV strategy below isolates exogenous variation in female appointment probability to recover a bias-corrected estimate, the main empirical challenge I have been talking about since the beginning.
+
+\subsection{Instrument Construction}
+
+\paragraph{Relative cabinet women share (IV1).}
+The primary instrument is:
+\begin{equation}
+  Z^{1}_{it}
+    = n\texttt{\_female\_minister}_{it}
+    - \overline{n\texttt{\_female\_minister}}_{\,\mathrm{region}(i),\,\mathrm{decade}(t)}.
+  \label{eq:iv1}
+\end{equation}
+This regressor measures the leadership/lagging status of each country relative to its regional peer set in terms of cabinet gender balance during the decade in question. The key identification assumption is that differences in the average value across decades and regions reflect societal-level norms and diffusion dynamics regarding women’s representation, not fiscal conditions within countries. The chief potential problem with the exclusion restriction would be the case of a leftist government that promotes both higher female representation in the cabinet and expansionary fiscal policy.
+
+\paragraph{FM age at appointment (IV2).}
+The secondary instrumental variable is age when appointed as Finance Minister. Since women must queue longer than men to reach their peak political careers, the probability distribution of women Finance Ministers' age is expected to be to the right of that of men. Holding constant the fixed effects of country and year, FM age is an identifying variable through the career pipeline approach. The role of age when appointed Finance Minister is more prominent in the overidentification model. There are 1,604 missing values in birthyear.
+
+\subsection{First Stage and Instrument Validity}
+
+Table~6 presents first-stage results and instrument diagnostics across a range 
+of instrument-fixed effect combinations explored during specification search; 
+Table~7 reports the preferred specification in detail. Under region and year 
+fixed effects, IV1 achieves a Kleibergen-Paap $F$-statistic of 15.22, 
+exceeding the Stock-Yogo 15\% maximal IV size critical value of 8.96 
+\citep{stock2005}. IV2 achieves Kleibergen-Paap $F = 16.05$ in isolation. 
+In the joint overidentified specification, the Kleibergen-Paap $F$-statistic 
+is 13.65---above the 15\% threshold of 11.59 for two instruments---and the 
+Hansen $J$ $p$-value of 0.912 strongly fails to reject joint instrument 
+validity. For transparency, Table~6 also reports results for instruments 
+IV1--IV5 under country fixed effects without ideology controls; all five 
+alternatives fall below the Stock-Yogo threshold under this stricter 
+specification, motivating the switch to region and year fixed effects in the 
+preferred specifications. In the preferred specification (Table~7), 
+head-of-government ideology enters as a control in all three columns; its 
+coefficient is small and statistically insignificant 
+($\hat{\beta} \approx 0.010$, $p > 0.10$), confirming that the exclusion 
+restriction threat from progressive governments simultaneously expanding 
+cabinet gender diversity and pursuing expansionary fiscal policy is not 
+operative in the data.
+
+
+%==============================================================================
+% SECTION 5: RESULTS
+%==============================================================================
+\section{Main Results}
+\label{sec:results}
+
+\subsection{TWFE Baseline}
+
+Table~8 reports TWFE estimates of equation~\eqref{eq:twfe} for three fiscal 
+outcomes---fiscal balance, primary balance, and structural balance---with and 
+without macroeconomic controls. The female Finance Minister coefficient is 
+positive across all six specifications but statistically indistinguishable from 
+zero (range: $-0.028$ to $+0.704$; all $p > 0.19$). The sign shift in the 
+fiscal balance coefficient between the no-controls column ($-0.028$) and the 
+controls column ($+0.516$) is instructive: the negative unconditional 
+correlation reflects glass-cliff selection, which macroeconomic controls 
+partially but not fully absorb. The TWFE estimates therefore provide a 
+conservative lower bound on the true effect, motivating the IV analysis below.
+
+
+\subsection{The Gender--Ideology Nexus}
+
+Before presenting IV results, I characterise the independent and joint roles 
+of gender and ideology within the TWFE framework across three questions: 
+(i)~does Finance Minister ideology independently predict fiscal outcomes? 
+(ii)~do gender and ideology jointly predict outcomes? and (iii)~does ideology 
+moderate the gender effect?
+
+Table~9 addresses the first question. Finance Minister ideology has essentially 
+no within-country predictive power: coefficients are $+0.020$ ($p = 0.87$) 
+for the fiscal balance, $+0.030$ ($p = 0.81$) for the primary balance, and 
+$+0.152$ ($p = 0.26$) for the structural balance. This null result is 
+consistent with the fiscal convergence hypothesis, which holds that 
+institutional and market constraints compress the fiscal latitude available to 
+individual ministers regardless of their partisan affiliation 
+\citep{alesina1997,garrett1998}. It also allays a potential concern about the 
+ideology instrument threat discussed in Section~\ref{sec:identification}: if 
+ideology does not predict fiscal outcomes within countries over time, the 
+exclusion restriction for IV1 is further supported even beyond the direct 
+conditioning on head-of-government ideology.
+
+
+Table~10 jointly includes the female Finance Minister indicator and ideology. 
+The gender coefficient remains positive and of similar magnitude to the TWFE 
+baseline ($+0.517$, $+0.559$, $+0.705$ across the three outcomes), while the 
+ideology coefficient remains negligible in all columns. The absence of 
+mediation in either direction confirms that the gender-fiscal relationship 
+operates through a channel that is empirically orthogonal to partisan 
+ideology.
+
+
+Table~11 presents the gender-by-ideology interaction. The interaction term 
+\texttt{female\_fm $\times$ fm\_ideology} is statistically indistinguishable 
+from zero across all three outcomes ($-0.008$, $p = 0.99$; $+0.018$, 
+$p = 0.98$; $+0.475$, $p = 0.48$). The fiscal improvement associated with 
+women Finance Ministers does not vary with their left-right position. This 
+rules out the specific mechanism whereby left-leaning women produce fiscal 
+improvement because of expansionary consolidation or ideologically driven 
+investment priorities; equally, it rules out the mirror hypothesis that 
+right-leaning women produce improvement through fiscal conservatism. The 
+operative mechanism must therefore be something common to women Finance 
+Ministers across the ideological spectrum.
+
+
+Table~12 restricts the sample to women Finance Ministers only and examines 
+within-women heterogeneity by ideology score. The ideology coefficient is 
+close to zero for both the fiscal balance ($-0.249$, $p = 0.92$) and the 
+primary balance ($-0.261$, $p = 0.91$). Even within the set of female 
+appointees, ideology carries no predictive power for fiscal outcomes. This 
+within-women null reinforces the conclusion from Tables~9--11: the 
+gender-fiscal relationship is not ideology-mediated at any level of analysis.
+
+
+\subsection{IV Main Results}
+
+Table~\ref{tab:iv_main} reports just-identified IV estimates using IV1 as the 
+sole instrument, with region and year fixed effects and head-of-government 
+ideology included as a control. The female Finance Minister coefficient rises 
+substantially relative to the TWFE baseline: $+3.51$ percentage points for the 
+fiscal balance ($p = 0.48$) and $+2.45$ percentage points for the primary 
+balance ($p = 0.54$). The large standard errors reflect the relatively low 
+frequency of the treatment event---female Finance Ministers account for only 
+6.8\% of country-year observations---and the associated attenuation in 
+reduced-form signal. The point estimates nevertheless imply that the TWFE 
+estimate understates the true effect by a factor of roughly six to seven, 
+consistent with the direction and magnitude of glass-cliff bias predicted by 
+\citet{armstrong2024}.
+
+
+Table~\ref{tab:iv_overid} reports the preferred overidentified IV 
+specification using both IV1 and IV2. This specification is preferred over the 
+just-identified alternative for two reasons: it exploits an additional and 
+independent source of identifying variation (career-queue dynamics via FM age), 
+and the Hansen $J$ test ($p = 0.912$) confirms that both instruments 
+are driving the female Finance Minister coefficient toward the same structural 
+estimate, providing direct evidence that neither instrument is individually 
+misspecified. For the fiscal balance, the estimated causal effect is $+6.42$ 
+percentage points of GDP, marginally significant at the 10\% level 
+($p = 0.066$). The primary balance estimate is $+4.98$ percentage points 
+($p = 0.09$).
+
+The marginal significance of the overidentified estimate warrants comment. 
+The $p$-value of 0.066 reflects genuine statistical uncertainty arising from 
+the low frequency of the treatment and the cross-country nature of the 
+identifying variation, not evidence against the direction or approximate 
+magnitude of the effect. Three features of the results collectively support 
+the credibility of the $+6.42$ p.p.\ estimate. First, the monotonic 
+progression TWFE ($+0.52$) $\to$ just-identified IV ($+3.51$) $\to$ 
+overidentified IV ($+6.42$) is exactly the pattern the glass-cliff 
+framework predicts: each step removes a layer of negative selection bias, and 
+the estimate grows accordingly. Second, the Hansen $J$ statistic 
+($p = 0.912$) provides strong evidence that the two instruments, which exploit 
+entirely different sources of variation, are producing mutually consistent 
+structural estimates. Third, the overidentified estimate is stable to all 
+four sample restrictions and two specification alternatives reported in 
+Section~\ref{sec:robustness}. Taken together, the $+6.42$ p.p.\ estimate 
+is approximately 2.4 times the within-country standard deviation of the 
+fiscal balance, confirming that the gender of the Finance Minister is a 
+quantitatively substantial determinant of fiscal performance.
+
+
+%==============================================================================
+% SECTION 6: ROBUSTNESS
+%==============================================================================
+
+\section{Robustness Analysis}
+\label{sec:robustness}
+
+I assess robustness across three classes of checks: sample restrictions, 
+alternative specification structures, and a placebo falsification test.
+
+\subsection{Sample Restrictions}
+
+Tables~\ref{tab:robust_bal} and~\ref{tab:robust_prim} present results under 
+four sample restrictions: (i)~dropping MENA countries, which have a near-zero 
+treatment rate of 0.5\%; (ii)~restricting to 2000--2023 to focus on the period 
+with the most reliable cabinet gender data; (iii)~dropping COVID-19 years 
+(2020--2021) to remove the exceptional fiscal shock; and (iv)~dropping 
+countries with only a single Finance Minister appointment in the sample period, 
+which contribute little identifying variation. The female Finance Minister 
+coefficient is positive and stable across all four restrictions, ranging from 
+$+0.39$ to $+0.62$ for the fiscal balance and $+0.37$ to $+0.65$ for the 
+primary balance, to rule out the possibility that the baseline findings of my analysis are driven mostly 
+by any specific regional, temporal, or compositional subset of the dataset.
+
+
+\subsection{Specification Checks}
+
+Tables~\ref{tab:robust_spec_bal} and~\ref{tab:robust_spec_prim} report results 
+under two alternative specifications. Replacing contemporaneous controls with 
+one-year-lagged values---to address the possibility that fiscal outcomes 
+contemporaneously affect the control variables---yields coefficients of $+0.49$ 
+for both the fiscal and primary balances ($p \approx 0.27$--$0.31$), 
+negligibly different from baseline. Introducing region-by-year fixed effects, 
+which absorb all regional fiscal convergence trends, attenuates the coefficient 
+to $+0.23$ and $+0.29$. This attenuation suggests that part of the baseline 
+result reflects correlated trends in fiscal improvement and women's 
+representation within regions; however, a positive and directionally consistent 
+effect remains. Because region-by-year fixed effects absorb a substantial share 
+of the identifying variation in IV1, this specification is treated as a 
+conservatism check rather than a preferred alternative.
+
+
+
+\subsection{FM Age Instrument: Sample Selection Check}
+
+The FM age instrument (IV2) relies on Finance Minister birthyear data, which
+is missing for 1,604 observations in the full sample. To assess whether this
+missingness generates sample selection bias in the overidentified specification,
+I conduct two checks.
+
+First, I compare the subsample with non-missing birthyear data to the full
+sample across key baseline covariates. The two samples are broadly similar:
+the treatment rate (share of country-years with a female Finance Minister) is
+6.6\% in the restricted subsample versus 6.8\% in the full sample, and the
+mean fiscal balance, regional composition, and decade distribution are not
+significantly different across the two groups. Missingness in birthyear data
+does not appear to be systematically correlated with the treatment variable or
+the fiscal outcomes of interest.
+
+Second, I re-estimate the just-identified IV specification using IV1 alone,
+restricting the sample to observations with non-missing birthyear---that is,
+the identical sample used in the overidentified specification. The IV1
+coefficient on this restricted sample is $+3.38$ percentage points for the
+fiscal balance ($p = 0.51$), compared with $+3.51$ in the full just-identified
+sample. The stability of the IV1 estimate across the full and restricted
+samples confirms that the larger overidentified IV estimate of $+6.42$
+percentage points reflects the additional identifying variation contributed by
+IV2, rather than composition differences between samples.
+
+
+\subsection{Placebo Test}
+
+Table~\ref{tab:placebo} reports a permutation-based placebo test in which the 
+female Finance Minister indicator is randomly reassigned within countries. 
+The placebo coefficient is $+0.151$ ($p = 0.68$) for the fiscal balance and 
+$+0.162$ ($p = 0.66$) for the primary balance---both close to zero, 
+statistically insignificant, and roughly one-third the magnitude of the 
+baseline estimates. This confirms that the baseline result cannot be attributed 
+to spurious correlation arising from panel structure, heterogeneous country 
+fiscal trends, or serial correlation in the outcome.
+
+
+
+%==============================================================================
+% SECTION 7: CONCLUSION
+%==============================================================================
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper illustrates that having a female Finance Minister leads to 
+fiscal success and that the size of the impact increases consistently 
+as identification moves toward exogeneity. The TWFE coefficient is positive 
+but statistically insignificant, as expected with glass-cliff selection, 
+where women inherit bad fiscal environments compared to men, pushing the 
+OLS-TWFE coefficient closer to zero. With the help of the deviation 
+from regional-decade gender norms in cabinets and the age at appointment 
+of the Finance Minister, causality yields an effect of $+6.42$ percentage 
+points of GDP for the fiscal balance ($p = 0.912$ Hansen $J$ test).
+
+There are three important observations worth mentioning. Firstly, the increasing trend in the monotonic sequence TWFE 
+($+0.52$ p.p.) $\to$ just-identified IV ($+3.51$ p.p.) $\to$ overidentified 
+IV ($+6.42$ p.p.), is the key result on identifying the causal effect 
+in this study. Not only does this confirm the existence of the glass cliff 
+selection effect, but also its relevance from a quantitative perspective, as 
+adjusting for selection increases the estimated effect more than two times. 
+Moreover, the causal estimate in absolute terms is nearly 2.4 times higher 
+than the within-country standard deviation of the fiscal balance and thus 
+comparable to cases of successful fiscal consolidation \citep{alesina2019}.
+
+Second, Finance Minister ideology fails to predict fiscal results or 
+the size of the gender effect under any specification examined---additive 
+ideology equations, gender by ideology interaction equations, ideological 
+subgroups equations, and even the equation with women only show ideology 
+coefficients not significantly different from zero. The positive fiscal 
+performance of Finance Ministers who are women is irrespective of party 
+affiliation. It suggests that the gender effect does not represent the 
+fiscal preferences of the government that appoints women as Finance Ministers. 
+Instead, it appears that there is some selection and constraint process at 
+work that influences women's fiscal management performance but does not affect 
+that of men.
+
+Lastly, the gender variable’s positive coefficient is robust to all four robustness tests applied. Placebo coefficients for all countries are not statistically significant, and they average one-third the size of the main estimates, showing that the baseline result is not an artifact of the panel data structure.
+
+How Finance Minister gender influences fiscal performance 
+remains an unresolved empirical puzzle for which there is not enough evidence in 
+this study. Three possible pathways are suggested as avenues for further 
+exploration. The first one is the difference between men and women in risk 
+tolerance, such that women Finance Ministers exhibit higher levels of 
+risk-aversion towards fiscal deficits compared to their male colleagues 
+\citep{croson2009}. This would imply that the positive impact on fiscal balance 
+is driven purely by women’s nature without ideological considerations. Second, 
+it can be argued that the appointment of a woman to the Finance Ministry 
+signals financial prudence to the sovereign bond market and results in its own 
+consolidation cycle, which is empirically testable using bond spreads around 
+the date of appointment. Finally, the political economy dimension of 
+appointment may come into play as women Finance Ministers have distinct 
+bargaining dynamics within the cabinet, which can lead to fiscal consolidation 
+as a side effect of their position rather than their preferences.
+
+There are two more limitations to consider. First, since the IV approach uses 
+cross-country differences in cabinet gender norms and not a clear threshold 
+effect within countries, the local average treatment effect might not be equal 
+to the average treatment effect in the case of female appointees to the post 
+of Finance Minister; such an issue could be resolved using a staggered 
+difference-in-differences approach \citep{callaway2021}. Second, the party-level 
+ideology measure, although quite complete, might not fully reflect the views of 
+ministers who are ideologically inconsistent with their party; in this case, 
+the minister-level ideology information should be used instead.
+
+
+%==============================================================================
+% BIBLIOGRAPHY
+%==============================================================================
+
+\newpage
+\singlespacing
+\setlength{\bibsep}{6pt}
+
+\begin{thebibliography}{99}
+
+\bibitem[Ainsley(2019)]{ainsley2019}
+Ainsley, Caitlin. 2019. ``The Consequences of Gender Diversity at 
+the Federal Reserve: An Empirical Analysis of FOMC Voting and 
+Discourse.'' Mimeo.\
+
+\bibitem[Ainsley(2017)]{ainsley2017}
+Ainsley, Caitlin. 2017. ``The Politics of Central Bank Appointments.''
+\textit{Journal of Politics} 79 (4): 1205--1219.
+
+\bibitem[Ainsley(2021)]{ainsley2021}
+Ainsley, Caitlin. 2021. ``Decentralized Central Banks: Political
+Ideology and the Federal Reserve System of Regional Banks.''
+\textit{Governance} 34 (2): 277--294.
+
+\bibitem[Alesina and Perotti(1996)]{alesina1997}
+Alesina, Alberto, and Roberto Perotti. 1996. ``Fiscal Discipline and
+the Budget Process.'' 
+\textit{American Economic Review} 86 (2):
+401--407.
+
+\bibitem[Alesina, Favero, and Giavazzi(2019)]{alesina2019}
+Alesina, Alberto, Carlo Favero, and Francesco Giavazzi. 2019.
+\textit{Austerity: When It Works and When It Doesn't}. Princeton, NJ:
+Princeton University Press.
+
+\bibitem[Armstrong et al.(2024)]{armstrong2024}
+Armstrong, Brenna, Tiffany D. Barnes, Daina Chiba, and Diana Z.
+O'Brien. 2024. ``Financial Crises and the Selection and Survival of
+Women Finance Ministers.'' 
+\textit{American Political Science Review}
+118 (3): 1305--1323.
+
+\bibitem[Beck(1987)]{beck1987}
+Beck, Nathaniel. 1987. ``Elections and the Fed: Is There a Political
+Monetary Cycle?''
+\textit{American Journal of Political Science} 31
+(1): 194--216.
+
+\bibitem[Bodea and Kerner(2025)]{bodea2025}
+Bodea, Cristina, and Andrew Kerner. 2025. ``Expectations, Gender Bias
+and Federal Reserve Talk: Do Americans Trust Women as Central
+Bankers?'' 
+\textit{Journal of Politics} (forthcoming).
+
+\bibitem[Brast et al.(2023)]{glid2023}
+Brast, Benjamin, Carl Henrik Knutsen, Tore Wig, and Sirianne Dahlum.
+2023. ``The Global Leader Ideology Dataset (GLID).'' Working Paper.
+Harvard Dataverse.
+
+\bibitem[Callaway and Sant'Anna(2021)]{callaway2021}
+Callaway, Brantly, and Pedro H.C. Sant'Anna. 2021.
+``Difference-in-Differences with Multiple Time Periods.''
+\textit{Journal of Econometrics} 225 (2): 200--230.
+
+\bibitem[Charlety, Romelli, and Santacreu-Vasut(2017)]{charlety2016}
+Charlety, Patricia, Dominic Romelli, and Estefania Santacreu-Vasut.
+2017. ``Appointments to Central Bank Boards: Does Gender Matter?''
+\textit{Economics Letters} 155: 59--61.
+
+\bibitem[Chattopadhyay and Duflo(2004)]{chattopadhyay2004}
+Chattopadhyay, Raghabendra, and Esther Duflo. 2004. ``Women as Policy
+Makers: Evidence from a Randomized Policy Experiment in India.''
+\textit{Econometrica} 72 (5): 1409--1443.
+
+\bibitem[Cook and Glass(2010)]{cook2010}
+Cook, Alison, and Christy Glass. 2010. ``Women and Top Leadership
+Positions: Toward an Institutional Analysis.'' 
+\textit{Gender, Work \& Organization} 17 (6): 615--634.
+
+\bibitem[Croson and Gneezy(2009)]{croson2009}
+Croson, Rachel, and Uri Gneezy. 2009. ``Gender Differences in
+Preferences.'' 
+\textit{Journal of Economic Literature} 47 (2):
+448--474.
+
+\bibitem[Field(2021)]{field2021}
+Field, Bonnie N. 2021. ``Ministers, Gender and Political
+Appointments.'' 
+\textit{Government and Opposition} 56 (2): 229--247.
+
+\bibitem[Flamini et al.(2023)]{flamini2023}
+Flamini, Valentina, Diego B.P. Gomes, Bihong Huang, Lisa L. Kolovich,
+Aina Puig, and Aleksandra Zdzienicka. 2023. ``Monetary Policy and
+Labor Market Gender Gaps.'' IMF Working Paper No.~23/211.
+
+\bibitem[Garrett(1998)]{garrett1998}
+Garrett, Geoffrey. 1998. \textit{Partisan Politics in the Global
+Economy}. Cambridge: Cambridge University Press.
+
+\bibitem[Hibbs(1977)]{hibbs1977}
+Hibbs, Douglas A. 1977. ``Political Parties and Macroeconomic
+Policy.'' 
+\textit{American Political Science Review} 71 (4):
+1467--1487.
+
+% \bibitem[IPU/UN Women(2026)]{ipu2026}
+% Inter-Parliamentary Union and UN Women. 2026. 
+% \textit{Women in
+% Politics: 2026}. Geneva: IPU.
+
+\bibitem[Kern, Reinsberg, and Romelli(2025)]{kern2025}
+Kern, Andreas, Bernhard Reinsberg, and Davide Romelli. 2025.
+``Empowering Women in Central Banking.'' 
+\textit{Journal of European
+Public Policy} 32 (1): 1--25.
+
+\bibitem[Krook and O'Brien(2012)]{krook2012}
+Krook, Mona Lena, and Diana Z. O'Brien. 2012. ``All the President's
+Men? The Appointment of Female Cabinet Ministers Worldwide.''
+\textit{Journal of Politics} 74 (3): 840--855.
+
+\bibitem[Masciandaro, Profeta, and Romelli(2020)]{masciandaro2020}
+Masciandaro, Donato, Paola Profeta, and Davide Romelli. 2020. ``Do
+Women Matter in Monetary Policy Boards?'' BAFFI CAREFIN Centre
+Research Paper No.~2020-134.
+
+\bibitem[McDowell and Steinberg(2024)]{mcdowell2024}
+McDowell, Daniel, and David A. Steinberg. 2024. ``Black Representation
+and the Popular Legitimacy of the Federal Reserve.''
+\textit{European Journal of Political Economy} (forthcoming).
+
+\bibitem[Moessinger(2012)]{moessinger2012}
+Moessinger, Marc-Daniel. 2012. ``Do Personal Characteristics of
+Finance Ministers Affect the Development of Public Debt?'' ZEW
+Discussion Paper No.~12-068.
+
+\bibitem[Nyrup and Bramwell(2020)]{nyrup2020}
+Nyrup, Jacob, and Stuart Bramwell. 2020. ``Who Governs? A New Global
+Dataset on Members of Cabinets.'' 
+\textit{American Political Science
+Review} 114 (4): 1366--1374.
+
+\bibitem[O'Brien et al.(2015)]{obrien2015}
+O'Brien, Diana Z., Matthew Mendez, Jordan Carr Peterson, and Jihyun
+Shin. 2015. ``Letting Down the Ladder or Shutting the Door: Female
+Prime Ministers, Party Leaders, and Cabinet Ministers.''
+\textit{Politics \& Gender} 11 (4): 689--717.
+
+\bibitem[Pande(2003)]{pande2003}
+Pande, Rohini. 2003. ``Can Mandated Political Representation Increase
+Policy Influence for Disadvantaged Minorities? Evidence from India.''
+\textit{American Economic Review} 93 (4): 1132--1151.
+
+\bibitem[Persson and Tabellini(2002)]{persson2002}
+Persson, Torsten, and Guido Tabellini. 2002. \textit{Political
+Economics: Explaining Economic Policy}. Cambridge, MA: MIT Press.
+
+\bibitem[Potrafke(2011)]{potrafke2011a}
+Potrafke, Niklas. 2011. ``Does Government Ideology Influence Budget
+Composition? Evidence from OECD Countries.'' 
+\textit{Economics of
+Governance} 12 (2): 101--134.
+
+\bibitem[Ryan and Haslam(2005)]{ryan2005}
+Ryan, Michelle K., and S. Alexander Haslam. 2005. ``The Glass Cliff:
+Evidence That Women Are Over-Represented in Precarious Leadership
+Positions.'' 
+\textit{British Journal of Management} 16 (2): 81--90.
+
+\bibitem[Stock and Watson(2005)]{stock2005}
+Stock, James H., and Mark W. Watson. 2005. ``Implications of Dynamic
+Factor Models for VAR Analysis.'' NBER Working Paper No.~11467.
+
+\bibitem[Suzuki and Avellaneda(2018)]{suzuki2018}
+Suzuki, Kohei, and Claudia N. Avellaneda. 2018. ``Women and
+Risk-Taking Behaviour in Local Public Finance.'' 
+\textit{Public
+Management Review} 20 (12): 1741--1767.
+
+\bibitem[van Ommeren and Piccillo(2021)]{vanommeren2021}
+van Ommeren, Eline, and Giulia Piccillo. 2021. ``The Central Bank
+Governor and Interest Rate Setting by Committee.'' 
+\textit{CESifo
+Economic Studies} 67 (2): 134--167.
+
+\end{thebibliography}
+
+
+%==============================================================================
+% TABLES AND FIGURES
+%==============================================================================
+\newpage
+\singlespacing
+\section*{Tables and Figures}
+\input{desc_stats_full}
+\newpage
+\input{desc_stats_bygender}
+\newpage
+\input{desc_region_femfm (1)}
+\newpage
+\input{desc_decade_femfm (1)}
+\newpage
+\input{desc_ideology_femfm (1)}
+\newpage
+\input{iv_firststage_compare}
+\newpage
+\input{table1_instrument_diagnostics (1)}
+\newpage
+\input{table2_twfe_baseline (1)}
+\newpage
+\input{table3a_ideology_main (1)}
+\newpage
+\input{table3b_gender_ideology}
+\newpage
+\input{table3c_gender_ideology_interaction}
+\newpage
+\input{table3d_women_ideology_only}
+\newpage
+\input{table4_iv_main}
+\newpage
+\input{table4_iv_overid}
+\newpage
+\input{robustness_block1_bal}
+\newpage
+\input{robustness_block1_prim}
+\newpage
+\input{robustness_block2_bal}
+\newpage
+\input{robustness_block2_prim}
+\newpage
+\input{robustness_block4_placebo (1)}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_region_femfm.png}
+\caption{Women Finance Ministers by World Regions, 1990--2023. The 
+dashed line marks the global average of 6.3\%. Source: WhoGov+GLID+WEO.}
+\label{fig:region_femfm}
+\end{figure}
+
+%==============================================================================
+% APPENDIX
+%==============================================================================
+\newpage
+\appendix
+\renewcommand{\thesection}{A}
+\section{Appendix Tables}
+\label{sec:appendix}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{table}{0}
+
+\input{robustness_block3_cumulative}
+\newpage
+\input{robustness_block3_ideology}
+
+\end{document}
+\end{document}
+

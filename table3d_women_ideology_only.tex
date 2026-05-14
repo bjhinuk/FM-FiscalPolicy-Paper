@@ -1,0 +1,32 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Table 3d: Ideology and Fiscal Outcomes — Women FMs Only}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}&\multicolumn{1}{c}{Structural Balance}\\
+\hline
+fm\_ideology1&      -0.249         &      -0.261         &       2.378         \\
+            &     (2.365)         &     (2.359)         &     (3.166)         \\
+[1em]
+gdp\_growth  &      -0.385         &      -0.385         &      -0.815         \\
+            &     (0.390)         &     (0.389)         &     (1.292)         \\
+[1em]
+inflation   &       0.287\sym{*}  &       0.308\sym{*}  &      0.0570         \\
+            &     (0.162)         &     (0.162)         &     (0.392)         \\
+[1em]
+gross\_debt\_gdp&     -0.0645\sym{*}  &     -0.0572\sym{*}  &     -0.0526         \\
+            &    (0.0333)         &    (0.0336)         &    (0.0336)         \\
+[1em]
+democracy   &       1.397         &       1.369         &           0         \\
+            &     (3.498)         &     (3.619)         &         (.)         \\
+[1em]
+hog\_ideology\_num\_redux&      -3.707         &      -3.800         &      -9.073         \\
+            &     (3.577)         &     (3.566)         &     (6.265)         \\
+\hline
+\(N\)       &         263         &         260         &         116         \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Sample: country-years with women Finance Ministers only.  Country and year FE. Clustered SEs at country level.}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{table}

@@ -1,0 +1,33 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{IV Results: Women Finance Ministers and Fiscal Outcomes (IV10 Only)}
+\label{tab:iv_main}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}&\multicolumn{1}{c}{Structural Balance}\\
+\hline
+female\_fm   & 3.510 & 2.450 & $-$4.170 \\
+            & (4.910) & (3.936) & (4.253) \\[0.5em]
+gdp\_growth  & $-$0.129 & $-$0.146 & $0.093^{**}$ \\
+            & (0.156) & (0.155) & (0.042) \\[0.5em]
+inflation   & 0.008 & 0.006 & 0.010 \\
+            & (0.014) & (0.014) & (0.030) \\[0.5em]
+gross\_debt\_gdp & $-0.052^{*}$ & $-$0.036 & $-0.022^{**}$ \\
+            & (0.028) & (0.027) & (0.009) \\[0.5em]
+democracy   & $-$0.714 & 0.258 & $-$0.685 \\
+            & (0.916) & (0.934) & (0.741) \\[0.5em]
+hog\_ideology & 0.563 & 0.436 & $-$0.039 \\
+            & (0.590) & (0.570) & (0.225) \\
+\hline
+\(N\)       & 3,938 & 3,839 & 1,875 \\
+KP $F$-stat & 15.13 & 14.62 & 7.47 \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize IV: cabinet women relative to region-decade mean (IV10).}\\
+\multicolumn{4}{l}{\footnotesize Region and year FE absorbed. Clustered SEs at country level.}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

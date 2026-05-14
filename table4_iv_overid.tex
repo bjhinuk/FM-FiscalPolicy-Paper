@@ -1,0 +1,35 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Overidentified IV: Women Finance Ministers and Fiscal Outcomes (IV10 + FM Age)}
+\label{tab:iv_overid}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Fiscal Balance}&\multicolumn{1}{c}{Primary Balance}&\multicolumn{1}{c}{Structural Balance}\\
+\hline
+female\_fm   & $6.420^{*}$ & 3.035 & $-$0.134 \\
+            & (3.468) & (2.857) & (3.052) \\[0.5em]
+gdp\_growth  & $0.188^{***}$ & $0.171^{***}$ & $0.085^{*}$ \\
+            & (0.037) & (0.039) & (0.048) \\[0.5em]
+inflation   & 0.000 & $-$0.001 & $-$0.020 \\
+            & (0.008) & (0.008) & (0.021) \\[0.5em]
+gross\_debt\_gdp & $-0.030^{***}$ & $-$0.008 & $-0.031^{***}$ \\
+            & (0.007) & (0.005) & (0.009) \\[0.5em]
+democracy   & $-1.373^{***}$ & $-$0.401 & $-1.344^{*}$ \\
+            & (0.515) & (0.386) & (0.709) \\[0.5em]
+hog\_ideology & $-$0.030 & $-$0.127 & 0.092 \\
+            & (0.233) & (0.199) & (0.170) \\
+\hline
+\(N\)       & 2,968 & 2,893 & 1,645 \\
+KP $F$-stat & 13.65 & 13.53 & 7.91 \\
+Hansen $J$ $p$ & 0.912 & 0.936 & 0.105 \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize IVs: IV10 (relative cabinet rank) and FM Age.}\\
+\multicolumn{4}{l}{\footnotesize Region and year FE absorbed. Clustered SEs at country level.}\\
+\multicolumn{4}{l}{\footnotesize Hansen $J$ $p>0.10$ indicates instruments are jointly valid.}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}

@@ -1,0 +1,20 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Robustness Block 2: Specification Checks — Fiscal Balance}
+\begin{adjustbox}{max width=\textwidth}
+\small
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{Lagged Controls}&\multicolumn{1}{c}{Region×Year FE}\\
+\hline
+female\_fm   &       0.487         &       0.233         \\
+            &     (0.443)         &     (0.514)         \\
+\hline
+\(N\)       &        3939         &        3938         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Country FE in all specs. Clustered SEs at country level.  Add Exp/Rev omitted: fiscal balance = revenue - expenditure by identity.}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+\end{adjustbox}
+\end{table}
